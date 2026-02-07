@@ -13,6 +13,12 @@ namespace MauiApp1
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+
+                    fonts.AddFont("Inter-Regular.ttf", "InterRegular");
+                    fonts.AddFont("Inter-Medium.ttf", "InterMedium");
+                    fonts.AddFont("Inter-SemiBold.ttf", "InterSemiBold");
+                    fonts.AddFont("Inter-Bold.ttf", "InterBold");
+                    fonts.AddFont("Inter-ExtraBold.ttf", "InterExtraBold");
                 });
 
 #if DEBUG
