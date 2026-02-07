@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiApp1.LoginPage"
+			 NavigationPage.HasNavigationBar="False"
+			 BackgroundColor="#10B981">
+	<ContentPage.Resources>
+		<ResourceDictionary>
+			<!-- Colores -->
+			<Color x:Key="GreenPrimary">#10B981</Color>
+			<Color x:Key="GreenDark">#059669</Color>
+			<Color x:Key="TextPrimary">#1F2937</Color>
+			<Color x:Key="TextSecondary">#6B7280</Color>
+			<Color x:Key="White">#FFFFFF</Color>
+
+			<!-- Shadow -->
+			<Shadow x:Key="CardShadow"
+                    Brush="Black"
+                    Offset="0,8"
+                    Radius="20"
+                    Opacity="0.15"/>
+		</ResourceDictionary>
+	</ContentPage.Resources>
+	<ScrollView>
+		<VerticalStackLayout Padding="0" Spacing="0">
+
+
+			<!-- Card principal con fondo blanco -->
+			<Border BackgroundColor="White"
+                    StrokeThickness="0"
+                    Padding="30"
+                    Shadow="{StaticResource CardShadow}">
+				<Border.StrokeShape>
+					<RoundRectangle CornerRadius="30"/>
+				</Border.StrokeShape>
+
+				<VerticalStackLayout Spacing="25">
+
+					<!-- Logo/Icono -->
+					<Border WidthRequest="100"
+                            HeightRequest="100"
+                            StrokeThickness="0"
+                            BackgroundColor="#10B981"
+                            HorizontalOptions="Center"
+                            Margin="0,10,0,0">
+						<Border.StrokeShape>
+							<RoundRectangle CornerRadius="25"/>
+						</Border.StrokeShape>
+						<Border.Shadow>
+							<Shadow Brush="#10B981" Offset="0,4" Radius="12" Opacity="0.3"/>
+						</Border.Shadow>
+						<!-- Aquí puedes poner una imagen o emoji -->
+						<Label Text="🎓"
+                               FontSize="50"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center"/>
+					</Border>
+
+					<!-- Título Bienvenido -->
+					<VerticalStackLayout Spacing="8" Margin="0,10,0,0">
+						<Label Text="Bienvenido"
+                               FontSize="28"
+                               FontAttributes="Bold"
+                               TextColor="{StaticResource TextPrimary}"
+                               HorizontalOptions="Center"/>
+						<Label Text="Sistema de Control Escolar"
+                               FontSize="15"
+                               TextColor="{StaticResource TextSecondary}"
+                               HorizontalOptions="Center"/>
+						<Label Text="Inicia sesión para continuar"
+                               FontSize="13"
+                               TextColor="{StaticResource TextSecondary}"
+                               HorizontalOptions="Center"/>
+					</VerticalStackLayout>
+
+					<!-- Selector de Rol -->
+					<Grid ColumnDefinitions="*,*,*"
+                          ColumnSpacing="12"
+                          Margin="0,15,0,0">
+						<!-- Alumno -->
+						<Border Grid.Column="0"
+                                x:Name="alumnoButton"
+                                Padding="15,12"
+                                StrokeThickness="2"
+                                Stroke="#10B981"
+                                BackgroundColor="#ECFDF5">
+							<Border.StrokeShape>
+								<RoundRectangle CornerRadius="12"/>
+							</Border.StrokeShape>
+							<Border.GestureRecognizers>
+								<TapGestureRecognizer Tapped="OnAlumnoSelected"/>
+							</Border.GestureRecognizers>
+							<VerticalStackLayout Spacing="5">
+								<Label Text="🎓"
+                                       FontSize="28"
+                                       HorizontalOptions="Center"/>
+								<Label Text="Alumno"
+                                       FontSize="12"
+                                       FontAttributes="Bold"
+                                       TextColor="{StaticResource TextPrimary}"
+                                       HorizontalOptions="Center"/>
+							</VerticalStackLayout>
+						</Border>
+
+						<!-- Docente -->
+						<Border Grid.Column="1"
+                                x:Name="docenteButton"
+                                Padding="15,12"
+                                StrokeThickness="1"
+                                Stroke="#E5E7EB"
+                                BackgroundColor="White">
+							<Border.StrokeShape>
+								<RoundRectangle CornerRadius="12"/>
+							</Border.StrokeShape>
+							<Border.GestureRecognizers>
+								<TapGestureRecognizer Tapped="OnDocenteSelected"/>
+							</Border.GestureRecognizers>
+							<VerticalStackLayout Spacing="5">
+								<Label Text="👨‍🏫"
+                                       FontSize="28"
+                                       HorizontalOptions="Center"/>
+								<Label Text="Docente"
+                                       FontSize="12"
+                                       FontAttributes="Bold"
+                                       TextColor="{StaticResource TextPrimary}"
+                                       HorizontalOptions="Center"/>
+							</VerticalStackLayout>
+						</Border>
+
+						<!-- Admin -->
+						<Border Grid.Column="2"
+                                x:Name="adminButton"
+                                Padding="15,12"
+                                StrokeThickness="1"
+                                Stroke="#E5E7EB"
+                                BackgroundColor="White">
+							<Border.StrokeShape>
+								<RoundRectangle CornerRadius="12"/>
+							</Border.StrokeShape>
+							<Border.GestureRecognizers>
+								<TapGestureRecognizer Tapped="OnAdminSelected"/>
+							</Border.GestureRecognizers>
+							<VerticalStackLayout Spacing="5">
+								<Label Text="🔧"
+                                       FontSize="28"
+                                       HorizontalOptions="Center"/>
+								<Label Text="Admin"
+                                       FontSize="12"
+                                       FontAttributes="Bold"
+                                       TextColor="{StaticResource TextPrimary}"
+                                       HorizontalOptions="Center"/>
+							</VerticalStackLayout>
+						</Border>
+					</Grid>
+
+					<!-- Campo Usuario/Matrícula -->
+					<VerticalStackLayout Spacing="8">
+						<Label Text="Usuario o Matrícula"
+                               FontSize="13"
+                               FontAttributes="Bold"
+                               TextColor="{StaticResource TextPrimary}"/>
+						<Border StrokeThickness="1"
+                                Stroke="#E5E7EB"
+                                BackgroundColor="White">
+							<Border.StrokeShape>
+								<RoundRectangle CornerRadius="10"/>
+							</Border.StrokeShape>
+							<Entry x:Name="usuarioEntry"
+                                   Placeholder="Ingresa tu usuario"
+                                   PlaceholderColor="#9CA3AF"
+                                   TextColor="{StaticResource TextPrimary}"
+                                   FontSize="15"
+                                   BackgroundColor="Transparent"/>
+						</Border>
+					</VerticalStackLayout>
+
+					<!-- Campo Contraseña -->
+					<VerticalStackLayout Spacing="8">
+						<Label Text="Contraseña"
+                               FontSize="13"
+                               FontAttributes="Bold"
+                               TextColor="{StaticResource TextPrimary}"/>
+						<Border StrokeThickness="1"
+                                Stroke="#E5E7EB"
+                                BackgroundColor="White">
+							<Border.StrokeShape>
+								<RoundRectangle CornerRadius="10"/>
+							</Border.StrokeShape>
+							<Entry x:Name="passwordEntry"
+                                   Placeholder="••••••••"
+                                   PlaceholderColor="#9CA3AF"
+                                   TextColor="{StaticResource TextPrimary}"
+                                   FontSize="15"
+                                   IsPassword="True"
+                                   BackgroundColor="Transparent"/>
+						</Border>
+					</VerticalStackLayout>
+
+					<!-- Recordar sesión -->
+					<HorizontalStackLayout Spacing="8">
+						<CheckBox x:Name="recordarCheckBox"
+                                  Color="#10B981"/>
+						<Label Text="Recordar mi sesión"
+                               FontSize="13"
+                               TextColor="{StaticResource TextSecondary}"
+                               VerticalOptions="Center"/>
+					</HorizontalStackLayout>
+
+					<!-- Botón Iniciar Sesión -->
+					<Button Text="Iniciar Sesión"
+                            FontSize="16"
+                            FontAttributes="Bold"
+                            TextColor="White"
+                            BackgroundColor="#10B981"
+                            CornerRadius="12"
+                            HeightRequest="50"
+                            Clicked="OnIniciarSesionClicked">
+						<Button.Shadow>
+							<Shadow Brush="#10B981" Offset="0,4" Radius="12" Opacity="0.3"/>
+						</Button.Shadow>
+					</Button>
+
+					<!-- Enlaces inferiores -->
+					<Grid ColumnDefinitions="*,*"
+                          ColumnSpacing="20"
+                          Margin="0,10,0,0">
+						<VerticalStackLayout Grid.Column="0"
+                                           Spacing="5"
+                                           HorizontalOptions="Center">
+							<Border WidthRequest="40"
+                                    HeightRequest="40"
+                                    StrokeThickness="0"
+                                    BackgroundColor="#3B82F6"
+                                    HorizontalOptions="Center">
+								<Border.StrokeShape>
+									<RoundRectangle CornerRadius="20"/>
+								</Border.StrokeShape>
+								<Border.GestureRecognizers>
+									<TapGestureRecognizer Tapped="OnAyudaClicked"/>
+								</Border.GestureRecognizers>
+								<Label Text="❓"
+                                       FontSize="20"
+                                       TextColor="White"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="Center"/>
+							</Border>
+							<Label Text="Ayuda"
+                                   FontSize="11"
+                                   TextColor="{StaticResource TextSecondary}"
+                                   HorizontalOptions="Center"/>
+						</VerticalStackLayout>
+
+						<VerticalStackLayout Grid.Column="1"
+                                           Spacing="5"
+                                           HorizontalOptions="Center">
+							<Border WidthRequest="40"
+                                    HeightRequest="40"
+                                    StrokeThickness="0"
+                                    BackgroundColor="#10B981"
+                                    HorizontalOptions="Center">
+								<Border.StrokeShape>
+									<RoundRectangle CornerRadius="20"/>
+								</Border.StrokeShape>
+								<Border.GestureRecognizers>
+									<TapGestureRecognizer Tapped="OnIdiomaClicked"/>
+								</Border.GestureRecognizers>
+								<Label Text="🌐"
+                                       FontSize="20"
+                                       TextColor="White"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="Center"/>
+							</Border>
+							<Label Text="Idioma"
+                                   FontSize="11"
+                                   TextColor="{StaticResource TextSecondary}"
+                                   HorizontalOptions="Center"/>
+						</VerticalStackLayout>
+					</Grid>
+
+				</VerticalStackLayout>
+			</Border>
+
+
+		</VerticalStackLayout>
+	</ScrollView>
+</ContentPage>
