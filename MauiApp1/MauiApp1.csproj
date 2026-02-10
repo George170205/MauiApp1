@@ -70,4 +70,15 @@
 	  </MauiXaml>
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Folder Include="src\Application\Interfaces\" />
+	  <Folder Include="src\Application\Services\" />
+	  <Folder Include="src\Core\Enums\" />
+	  <Folder Include="src\Core\Models\" />
+	  <Folder Include="src\Infrastructure\Data\" />
+	  <Folder Include="src\Infrastructure\Repositories\" />
+	  <Folder Include="src\Presentation\ViewModels\" />
+	  <Folder Include="src\Presentation\Views\" />
+	</ItemGroup>
+
 </Project>
