@@ -78,7 +78,6 @@
 	  <Folder Include="src\Infrastructure\Data\" />
 	  <Folder Include="src\Infrastructure\Repositories\" />
 	  <Folder Include="src\Presentation\ViewModels\" />
-	  <Folder Include="src\Presentation\Views\" />
 	</ItemGroup>
 
 </Project>
