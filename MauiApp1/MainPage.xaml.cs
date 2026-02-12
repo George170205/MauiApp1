@@ -8,6 +8,68 @@
             InitializeComponent();
         }
 
+        private async void OnConfiguracionClicked(object sender, EventArgs e)
+        {
+            var opcion = await DisplayActionSheet(
+                "Configuración",
+                "Cancelar",
+                null,
+                "✏️ Editar Perfil",
+                "🔔 Notificaciones",
+                "🌐 Idioma",
+                "🚪 Cerrar Sesión");
+
+            switch (opcion)
+            {
+                case "✏️ Editar Perfil":
+                    await DisplayAlert("Perfil", "Editar perfil", "OK");
+                    break;
+                case "🔔 Notificaciones":
+                    await DisplayAlert("Notificaciones", "Configurar notificaciones", "OK");
+                    break;
+                case "🌐 Idioma":
+                    OnIdiomaClicked(sender, e);
+                    break;
+                case "🚪 Cerrar Sesión":
+                    // Lógica de cerrar sesión
+                    // Confirmar antes de cerrar sesión
+                    bool confirmar = await DisplayAlert(
+                        "Cerrar Sesión",
+                        "¿Estás seguro que deseas cerrar sesión?",
+                        "Sí",
+                        "No");
+
+                    if (confirmar)
+                    {
+                        // Limpiar las preferencias guardadas
+                        Preferences.Remove("recordar_sesion");
+                        Preferences.Remove("usuario");
+                        Preferences.Remove("rol");
+
+                        // Regresar al LoginPage
+                        Application.Current.MainPage = new LoginPage();
+                    }
+
+                    break;
+            }
+        }
+        private async void OnIdiomaClicked(object sender, EventArgs e)
+        {
+            var idioma = await DisplayActionSheet(
+                "Seleccionar Idioma",
+                "Cancelar",
+                null,
+                "🇲🇽 Español",
+                "🇺🇸 English");
+
+            if (idioma != null && idioma != "Cancelar")
+            {
+                await DisplayAlert("Idioma", $"Idioma seleccionado: {idioma}", "OK");
+            }
+        }
+
+
+
         private async void OnUsuariosClicked(object sender, EventArgs e)
         {
             // Navegar a la página de gestión de usuarios

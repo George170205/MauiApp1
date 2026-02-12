@@ -2,7 +2,6 @@
 using System;
 using MauiApp1.Data;
 
-
 namespace MauiApp1
 {
     public partial class LoginPage : ContentPage
@@ -14,7 +13,6 @@ namespace MauiApp1
             try
             {
                 InitializeComponent();
-
             }
             catch (Exception ex)
             {
@@ -22,68 +20,30 @@ namespace MauiApp1
             }
         }
 
-        // Selección de rol Alumno
-        private void OnAlumnoSelected(object sender, EventArgs e)
-        {
-            rolSeleccionado = "Alumno";
-            ActualizarSeleccionRol();
-        }
-
-        // Selección de rol Docente
-        private void OnDocenteSelected(object sender, EventArgs e)
-        {
-            rolSeleccionado = "Docente";
-            ActualizarSeleccionRol();
-        }
-
-        // Selección de rol Admin
-        private void OnAdminSelected(object sender, EventArgs e)
-        {
-            rolSeleccionado = "Admin";
-            ActualizarSeleccionRol();
-        }
-
-        // Actualizar estilos visuales según rol seleccionado
-        private void ActualizarSeleccionRol()
+        // Método para el Picker
+        private void OnRolSelected(object sender, EventArgs e)
         {
             try
             {
-                // Resetear todos los botones
-                alumnoButton.Stroke = Color.FromArgb("#E5E7EB");
-                alumnoButton.BackgroundColor = Colors.White;
-                alumnoButton.StrokeThickness = 1;
+                var picker = (Picker)sender;
+                int selectedIndex = picker.SelectedIndex;
 
-                docenteButton.Stroke = Color.FromArgb("#E5E7EB");
-                docenteButton.BackgroundColor = Colors.White;
-                docenteButton.StrokeThickness = 1;
-
-                adminButton.Stroke = Color.FromArgb("#E5E7EB");
-                adminButton.BackgroundColor = Colors.White;
-                adminButton.StrokeThickness = 1;
-
-                // Marcar el seleccionado
-                switch (rolSeleccionado)
+                switch (selectedIndex)
                 {
-                    case "Alumno":
-                        alumnoButton.Stroke = Color.FromArgb("#10B981");
-                        alumnoButton.BackgroundColor = Color.FromArgb("#ECFDF5");
-                        alumnoButton.StrokeThickness = 2;
+                    case 0:
+                        rolSeleccionado = "Alumno";
                         break;
-                    case "Docente":
-                        docenteButton.Stroke = Color.FromArgb("#047857");
-                        docenteButton.BackgroundColor = Color.FromArgb("#D1FAE5");
-                        docenteButton.StrokeThickness = 2;
+                    case 1:
+                        rolSeleccionado = "Docente";
                         break;
-                    case "Admin":
-                        adminButton.Stroke = Color.FromArgb("#1F2937");
-                        adminButton.BackgroundColor = Color.FromArgb("#F3F4F6");
-                        adminButton.StrokeThickness = 2;
+                    case 2:
+                        rolSeleccionado = "Admin";
                         break;
                 }
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"Error en ActualizarSeleccionRol: {ex.Message}");
+                System.Diagnostics.Debug.WriteLine($"Error en OnRolSelected: {ex.Message}");
             }
         }
 
@@ -110,27 +70,21 @@ namespace MauiApp1
                 button.IsEnabled = false;
                 button.Text = "Iniciando...";
 
-                // Simular validación (aquí llamarías a tu API)
+                // Simular validación
                 await Task.Delay(1500);
 
-                // TODO: Aquí validarías contra tu API/Base de datos
-                // var resultado = await _authService.LoginAsync(usuarioEntry.Text, passwordEntry.Text, rolSeleccionado);
-
-                // Por ahora, simular login exitoso
-                bool loginExitoso = true; // Cambiar por validación real
+                bool loginExitoso = true;
 
                 if (loginExitoso)
                 {
                     // Guardar sesión si está marcado
                     if (recordarCheckBox.IsChecked)
                     {
-                        // TODO: Guardar en Preferences
                         Preferences.Set("recordar_sesion", true);
                         Preferences.Set("usuario", usuarioEntry.Text);
                         Preferences.Set("rol", rolSeleccionado);
                     }
 
-                    // Navegar según el rol
                     await NavegarSegunRol();
                 }
                 else
@@ -157,15 +111,13 @@ namespace MauiApp1
                 switch (rolSeleccionado)
                 {
                     case "Alumno":
-                        // await Navigation.PushAsync(new AlumnoDashboardPage());
                         await DisplayAlert("Bienvenido", "Navegando al Dashboard de Alumno...", "OK");
                         break;
                     case "Docente":
-                        // await Navigation.PushAsync(new DocenteDashboardPage());
                         await DisplayAlert("Bienvenido", "Navegando al Dashboard de Docente...", "OK");
                         break;
                     case "Admin":
-                        await Navigation.PushAsync(new MainPage());
+                        Application.Current.MainPage = new MainPage();
                         break;
                 }
             }
@@ -199,11 +151,10 @@ namespace MauiApp1
             if (idioma != null && idioma != "Cancelar")
             {
                 await DisplayAlert("Idioma", $"Idioma seleccionado: {idioma}", "OK");
-                // TODO: Implementar cambio de idioma
             }
         }
 
-        // Verificar si hay sesión guardada al cargar
+        // Verificar sesión guardada
         protected override async void OnAppearing()
         {
             base.OnAppearing();
@@ -213,8 +164,6 @@ namespace MauiApp1
                 bool ok = TestConnection.CanConnect();
                 await DisplayAlert("SQL", ok ? "Conectado" : "Error de conexión", "OK");
 
-
-                // Verificar si hay sesión guardada
                 bool recordarSesion = Preferences.Get("recordar_sesion", false);
 
                 if (recordarSesion)
@@ -227,7 +176,20 @@ namespace MauiApp1
                         usuarioEntry.Text = usuarioGuardado;
                         rolSeleccionado = rolGuardado;
                         recordarCheckBox.IsChecked = true;
-                        ActualizarSeleccionRol();
+
+                        // Seleccionar el rol guardado en el Picker
+                        switch (rolGuardado)
+                        {
+                            case "Alumno":
+                                rolPicker.SelectedIndex = 0;
+                                break;
+                            case "Docente":
+                                rolPicker.SelectedIndex = 1;
+                                break;
+                            case "Admin":
+                                rolPicker.SelectedIndex = 2;
+                                break;
+                        }
                     }
                 }
             }
