@@ -1,5 +1,7 @@
 ﻿using Microsoft.Maui.Controls;
 using System;
+using MauiApp1.Data;
+
 
 namespace MauiApp1
 {
@@ -12,6 +14,7 @@ namespace MauiApp1
             try
             {
                 InitializeComponent();
+
             }
             catch (Exception ex)
             {
@@ -201,12 +204,16 @@ namespace MauiApp1
         }
 
         // Verificar si hay sesión guardada al cargar
-        protected override void OnAppearing()
+        protected override async void OnAppearing()
         {
             base.OnAppearing();
 
             try
             {
+                bool ok = TestConnection.CanConnect();
+                await DisplayAlert("SQL", ok ? "Conectado" : "Error de conexión", "OK");
+
+
                 // Verificar si hay sesión guardada
                 bool recordarSesion = Preferences.Get("recordar_sesion", false);
 
