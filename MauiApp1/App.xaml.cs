@@ -5,11 +5,11 @@
         public App()
         {
             InitializeComponent();
-        }
 
-        protected override Window CreateWindow(IActivationState? activationState)
-        {
-            return new Window(new AppShell());
+            var navigationPage = new NavigationPage(new LoginPage());
+            NavigationPage.SetHasNavigationBar(navigationPage, false);
+
+            MainPage = navigationPage;
         }
     }
 }

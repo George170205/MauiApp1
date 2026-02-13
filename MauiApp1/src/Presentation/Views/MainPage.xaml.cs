@@ -1,4 +1,6 @@
-﻿namespace MauiApp1
+﻿using MauiApp1.Services;
+
+namespace MauiApp1
 {
     public partial class MainPage : ContentPage
     {
@@ -105,12 +107,20 @@
             await DisplayAlert("Navegación", "Ver todas las alertas", "OK");
         }
 
-        protected override void OnAppearing()
+        ApiService api = new ApiService();
+
+        protected override async void OnAppearing()
         {
             base.OnAppearing();
-            // Aquí puedes cargar datos desde tu API o base de datos
-            LoadDashboardData();
+
+            var alumnos = await api.GetAlumnos();
+
+            foreach (var alumno in alumnos)
+            {
+                Console.WriteLine(alumno.Nombre);
+            }
         }
+
 
         private void LoadDashboardData()
         {

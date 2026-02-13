@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiApp1.LoginPage"
 			 NavigationPage.HasNavigationBar="False"
-			 BackgroundColor="#10B981">
+			 BackgroundColor="#F9FAFB">
 	<ContentPage.Resources>
 		<ResourceDictionary>
 			<!-- Colores -->
@@ -200,7 +200,26 @@
 								BackgroundColor="Transparent"
 								CornerRadius="12"
 								Clicked="OnIniciarSesionClicked"/>
+						
+						
 					</Border>
+
+					<!-- Link a Registro -->
+					<HorizontalStackLayout Spacing="5"
+										 HorizontalOptions="Center"
+										 Margin="0,20,0,0">
+						<Label Text="¿No tienes cuenta?"
+							   FontSize="13"
+							   TextColor="{StaticResource TextSecondary}"/>
+						<Label Text="Regístrate aquí"
+							   FontSize="13"
+							   TextColor="{StaticResource TextTitle}"
+							   FontAttributes="Bold">
+							<Label.GestureRecognizers>
+								<TapGestureRecognizer Tapped="OnRegistroClicked"/>
+							</Label.GestureRecognizers>
+						</Label>
+					</HorizontalStackLayout>
 
 
 					<!-- Enlaces inferiores -->
