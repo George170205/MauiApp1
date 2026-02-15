@@ -1,6 +1,12 @@
 ﻿using Microsoft.Maui.Controls;
 using System;
 using MauiApp1.Data;
+using MauiApp1.Services;
+using MauiApp1.src.Core.Models;
+using System.Text.Json;
+using System.IdentityModel.Tokens.Jwt;
+
+
 
 namespace MauiApp1
 {
@@ -35,34 +41,72 @@ namespace MauiApp1
 
         private async void OnIniciarSesionClicked(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(usuarioEntry.Text))
+            if (string.IsNullOrWhiteSpace(usuarioEntry.Text) ||
+                string.IsNullOrWhiteSpace(passwordEntry.Text))
             {
-                await DisplayAlert("Error", "Ingresa tu usuario", "OK");
+                await DisplayAlert("Error", "Completa los campos", "OK");
                 return;
             }
 
-            if (string.IsNullOrWhiteSpace(passwordEntry.Text))
+            try
             {
-                await DisplayAlert("Error", "Ingresa tu contraseña", "OK");
-                return;
-            }
+                var request = new LoginRequest
+                {
+                    Email = usuarioEntry.Text.Trim(),
+                    Password = passwordEntry.Text
+                };
 
-            // TODO: Validación real contra BD
-            await NavegarSegunRol();
+                var response = await _apiService.LoginUser(request);
+
+                if (response == null || string.IsNullOrEmpty(response.Token))
+                {
+                    await DisplayAlert("Error", "Credenciales incorrectas", "OK");
+                    return;
+                }
+
+                var token = response.Token;
+
+                // 🔐 Guardar token
+                Preferences.Set("jwt_token", token);
+
+                // 🔥 Decodificar JWT
+                var handler = new JwtSecurityTokenHandler();
+                var jwt = handler.ReadJwtToken(token);
+
+                var rolID = jwt.Claims.FirstOrDefault(c => c.Type == "RolID")?.Value;
+                var email = jwt.Claims.FirstOrDefault(c => c.Type.Contains("emailaddress"))?.Value;
+
+                Preferences.Set("rolID", rolID ?? "");
+                Preferences.Set("usuario", email ?? "");
+
+                await DisplayAlert("Bienvenido", $"Usuario: {email}", "OK");
+
+                await NavegarSegunRolID(rolID);
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Error", ex.Message, "OK");
+            }
         }
 
-        private async Task NavegarSegunRol()
+        private async Task NavegarSegunRolID(string rolID)
         {
-            switch (rolSeleccionado)
+            switch (rolID)
             {
-                case "Alumno":
-                    await DisplayAlert("Bienvenido", "Dashboard Alumno", "OK");
+                case "1":
+                    await DisplayAlert("Rol", "Entrando como Alumno", "OK");
                     break;
-                case "Docente":
-                    await DisplayAlert("Bienvenido", "Dashboard Docente", "OK");
+
+                case "2":
+                    await DisplayAlert("Rol", "Entrando como Docente", "OK");
                     break;
-                case "Admin":
+
+                case "3":
                     await Navigation.PushAsync(new MainPage());
+                    break;
+
+                default:
+                    await DisplayAlert("Error", "Rol no reconocido", "OK");
                     break;
             }
         }
@@ -76,6 +120,8 @@ namespace MauiApp1
         {
             var idioma = await DisplayActionSheet("Idioma", "Cancelar", null, "🇲🇽 Español", "🇺🇸 English");
         }
+
+        private readonly ApiService _apiService = new ApiService();
 
         protected override void OnAppearing()
         {

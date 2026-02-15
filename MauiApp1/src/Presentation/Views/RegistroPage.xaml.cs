@@ -1,5 +1,7 @@
 ﻿using System.Text.RegularExpressions;
 using MauiApp1.Services;
+using MauiApp1.src.Core.Models;
+
 
 namespace MauiApp1;
 
@@ -159,17 +161,20 @@ public partial class RegistroPage : ContentPage
 
         try
         {
-            var data = new
+            var request = new RegisterRequest
             {
-                rolID = rolPicker.SelectedIndex + 1,
-                email = emailEntry.Text.Trim(),
-                password = passwordEntry.Text,
-                nombre = nombreEntry.Text.Trim(),
-                apellido = apellidoEntry.Text.Trim(),
-                telefono = telefonoEntry.Text
+                RolID = ObtenerRolID(),
+                Email = emailEntry.Text.Trim(),
+                Password = passwordEntry.Text,
+                Nombre = nombreEntry.Text.Trim(),
+                Apellido = apellidoEntry.Text.Trim(),
+                Telefono = string.IsNullOrWhiteSpace(telefonoEntry.Text)
+        ? null
+        : telefonoEntry.Text.Trim()
             };
 
-            bool success = await _apiService.RegisterUser(data);
+            bool success = await _apiService.RegisterUser(request);
+
 
             if (success)
             {
@@ -200,6 +205,16 @@ public partial class RegistroPage : ContentPage
     // ==========================================
     // MÉTODOS AUXILIARES
     // ==========================================
+    private int ObtenerRolID()
+    {
+        return rolPicker.SelectedIndex switch
+        {
+            0 => 1, // Alumno
+            1 => 2, // Docente
+            2 => 3, // Admin
+            _ => 1
+        };
+    }
 
     private bool IsValidEmail(string email)
     {

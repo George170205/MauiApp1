@@ -1,7 +1,8 @@
-﻿using System.Net.Http;
+﻿using MauiApp1.src.Core.Models;
+using System.Net.Http;
+using System.Net.Http.Json;
 using System.Text;
 using System.Text.Json;
-using MauiApp1.src.Core.Models;
 
 namespace MauiApp1.Services
 {
@@ -12,15 +13,45 @@ namespace MauiApp1.Services
         public ApiService()
         {
             _httpClient = new HttpClient();
-            _httpClient.BaseAddress = new Uri("http://192.168.1.109:5017/"); // CAMBIA POR TU IP
+            _httpClient.BaseAddress = new Uri("https://schoolmuai-api.onrender.com/"); // CAMBIA POR TU IP
         }
 
-        public async Task<bool> RegisterUser(object data)
+        public async Task<string?> Login(string email, string password)
+        {
+            var data = new
+            {
+                email = email,
+                password = password
+            };
+
+            var json = JsonSerializer.Serialize(data);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+            var response = await _httpClient.PostAsync("api/auth/login", content);
+
+            if (!response.IsSuccessStatusCode)
+                return null;
+
+            return await response.Content.ReadAsStringAsync();
+        }
+
+        public async Task<LoginResponse> LoginUser(LoginRequest request)
+        {
+            var response = await _httpClient.PostAsJsonAsync("api/Auth/login", request);
+
+            if (!response.IsSuccessStatusCode)
+                return null;
+
+            return await response.Content.ReadFromJsonAsync<LoginResponse>();
+        }
+
+
+        public async Task<bool> RegisterUser(RegisterRequest data)
         {
             var json = JsonSerializer.Serialize(data);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
 
-            var response = await _httpClient.PostAsync("api/Usuarios/register", content);
+            var response = await _httpClient.PostAsync("api/auth/register", content);
 
             return response.IsSuccessStatusCode;
         }
