@@ -1,5 +1,5 @@
 ﻿using MauiApp1.Services;
-
+using MauiApp1.src.Presentation.Views;
 namespace MauiApp1
 {
     public partial class MainPage : ContentPage
@@ -74,23 +74,20 @@ namespace MauiApp1
 
         private async void OnUsuariosClicked(object sender, EventArgs e)
         {
-            // Navegar a la página de gestión de usuarios
-            // await Navigation.PushAsync(new UsuariosPage());
-            await DisplayAlert("Navegación", "Ir a Gestión de Usuarios", "OK");
+            // Navegar a la página de gestión de alumnos
+            await Navigation.PushAsync(new AlumnosPage());
         }
 
         private async void OnMateriasClicked(object sender, EventArgs e)
         {
-            // Navegar a la página de gestión de materias
-            // await Navigation.PushAsync(new MateriasPage());
-            await DisplayAlert("Navegación", "Ir a Gestión de Materias", "OK");
+            // Navegar a la página de gestión de docentes
+            await Navigation.PushAsync(new DocentesPage());
         }
 
         private async void OnGruposClicked(object sender, EventArgs e)
         {
-            // Navegar a la página de gestión de grupos
-            // await Navigation.PushAsync(new GruposPage());
-            await DisplayAlert("Navegación", "Ir a Gestión de Grupos", "OK");
+            // Navegar a la página de distribución de grupos
+            await Navigation.PushAsync(new DistribucionGruposPage());
         }
 
         private async void OnReportesClicked(object sender, EventArgs e)

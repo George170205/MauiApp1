@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiApp1.src.Presentation.Views.AlumnosGrupoPage"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="#F9FAFB">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="Primary">#1967D2</Color>
+            <Color x:Key="TextPrimary">#1F2937</Color>
+            <Color x:Key="TextSecondary">#6B7280</Color>
+            <Color x:Key="CardBackground">#FFFFFF</Color>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <Grid RowDefinitions="Auto,*">
+
+        <!-- Header -->
+        <Border Grid.Row="0" 
+                BackgroundColor="White" 
+                Padding="20,15"
+                StrokeThickness="0">
+            <Border.Shadow>
+                <Shadow Brush="Black" Offset="0,2" Radius="8" Opacity="0.08"/>
+            </Border.Shadow>
+
+            <Grid ColumnDefinitions="Auto,*">
+                <!-- Botón Volver -->
+                <Border Grid.Column="0"
+                        WidthRequest="40"
+                        HeightRequest="40"
+                        StrokeThickness="0"
+                        BackgroundColor="#F3F4F6"
+                        VerticalOptions="Center">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="10"/>
+                    </Border.StrokeShape>
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnVolverClicked"/>
+                    </Border.GestureRecognizers>
+                    <Label Text="←"
+                           FontSize="22"
+                           TextColor="{StaticResource TextPrimary}"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center"/>
+                </Border>
+
+                <!-- Título -->
+                <VerticalStackLayout Grid.Column="1" 
+                                   Spacing="2" 
+                                   VerticalOptions="Center"
+                                   Margin="15,0,0,0">
+                    <Label x:Name="lblNombreGrupo"
+                           Text="Grupo"
+                           FontFamily="InterBold"
+                           FontSize="20"
+                           FontAttributes="Bold"
+                           TextColor="{StaticResource TextPrimary}"/>
+                    <Label x:Name="lblCantidadAlumnos"
+                           Text="0 alumnos inscritos"
+                           FontSize="13"
+                           TextColor="{StaticResource TextSecondary}"/>
+                </VerticalStackLayout>
+            </Grid>
+        </Border>
+
+        <!-- Contenido Principal -->
+        <ScrollView Grid.Row="1">
+            <VerticalStackLayout Padding="15" Spacing="15">
+
+                <!-- Información del Grupo -->
+                <Border BackgroundColor="White"
+                        Padding="15"
+                        StrokeThickness="1"
+                        Stroke="#E5E7EB">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="12"/>
+                    </Border.StrokeShape>
+                    <Border.Shadow>
+                        <Shadow Brush="Black" Offset="0,2" Radius="8" Opacity="0.06"/>
+                    </Border.Shadow>
+
+                    <Grid ColumnDefinitions="*,*,*" ColumnSpacing="10">
+                        <VerticalStackLayout Grid.Column="0" Spacing="5">
+                            <Label Text="👥"
+                                   FontSize="24"
+                                   HorizontalOptions="Center"/>
+                            <Label x:Name="lblTotalAlumnos"
+                                   Text="0"
+                                   FontFamily="InterBold"
+                                   FontSize="22"
+                                   FontAttributes="Bold"
+                                   TextColor="{StaticResource Primary}"
+                                   HorizontalOptions="Center"/>
+                            <Label Text="Alumnos"
+                                   FontSize="11"
+                                   TextColor="{StaticResource TextSecondary}"
+                                   HorizontalOptions="Center"/>
+                        </VerticalStackLayout>
+
+                        <VerticalStackLayout Grid.Column="1" Spacing="5">
+                            <Label Text="📚"
+                                   FontSize="24"
+                                   HorizontalOptions="Center"/>
+                            <Label x:Name="lblMaterias"
+                                   Text="8"
+                                   FontFamily="InterBold"
+                                   FontSize="22"
+                                   FontAttributes="Bold"
+                                   TextColor="#10B981"
+                                   HorizontalOptions="Center"/>
+                            <Label Text="Materias"
+                                   FontSize="11"
+                                   TextColor="{StaticResource TextSecondary}"
+                                   HorizontalOptions="Center"/>
+                        </VerticalStackLayout>
+
+                        <VerticalStackLayout Grid.Column="2" Spacing="5">
+                            <Label Text="📊"
+                                   FontSize="24"
+                                   HorizontalOptions="Center"/>
+                            <Label x:Name="lblPromedio"
+                                   Text="8.5"
+                                   FontFamily="InterBold"
+                                   FontSize="22"
+                                   FontAttributes="Bold"
+                                   TextColor="#F59E0B"
+                                   HorizontalOptions="Center"/>
+                            <Label Text="Promedio"
+                                   FontSize="11"
+                                   TextColor="{StaticResource TextSecondary}"
+                                   HorizontalOptions="Center"/>
+                        </VerticalStackLayout>
+                    </Grid>
+                </Border>
+
+                <!-- Barra de Búsqueda -->
+                <Border StrokeThickness="1"
+                        Stroke="#E5E7EB"
+                        BackgroundColor="White"
+                        Padding="12,8">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="12"/>
+                    </Border.StrokeShape>
+                    <HorizontalStackLayout Spacing="10">
+                        <Label Text="🔍" FontSize="18" VerticalOptions="Center"/>
+                        <Entry x:Name="searchEntry"
+                               Placeholder="Buscar alumno..."
+                               PlaceholderColor="#9CA3AF"
+                               TextColor="{StaticResource TextPrimary}"
+                               FontSize="14"
+                               HorizontalOptions="FillAndExpand"
+                               TextChanged="OnSearchTextChanged"
+                               BackgroundColor="Transparent"/>
+                    </HorizontalStackLayout>
+                </Border>
+
+                <!-- Lista de Alumnos -->
+                <VerticalStackLayout x:Name="listaAlumnos" Spacing="10">
+                    <!-- Los alumnos se cargarán dinámicamente aquí -->
+                </VerticalStackLayout>
+
+                <!-- Botón Agregar Alumno -->
+                <Button Text="➕ Agregar Alumno al Grupo"
+                        BackgroundColor="{StaticResource Primary}"
+                        TextColor="White"
+                        CornerRadius="10"
+                        HeightRequest="45"
+                        Margin="0,10,0,0"
+                        Clicked="OnAgregarAlumnoClicked"/>
+
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <!-- Loading Indicator -->
+        <ActivityIndicator x:Name="loadingIndicator"
+                          Grid.Row="1"
+                          IsRunning="False"
+                          IsVisible="False"
+                          Color="{StaticResource Primary}"
+                          VerticalOptions="Center"
+                          HorizontalOptions="Center"/>
+
+    </Grid>
+</ContentPage>

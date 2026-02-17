@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiApp1.src.Presentation.Views.AlumnosPage"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="#F9FAFB">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="Primary">#1967D2</Color>
+            <Color x:Key="TextPrimary">#1F2937</Color>
+            <Color x:Key="TextSecondary">#6B7280</Color>
+            <Color x:Key="CardBackground">#FFFFFF</Color>
+            <Color x:Key="ActiveGreen">#10B981</Color>
+            <Color x:Key="InactiveRed">#EF4444</Color>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <Grid RowDefinitions="Auto,*">
+
+        <!-- Header -->
+        <Border Grid.Row="0" 
+                BackgroundColor="White" 
+                Padding="20,15"
+                StrokeThickness="0">
+            <Border.Shadow>
+                <Shadow Brush="Black" Offset="0,2" Radius="8" Opacity="0.08"/>
+            </Border.Shadow>
+
+            <Grid ColumnDefinitions="Auto,*,Auto">
+                <!-- Botón Volver -->
+                <Border Grid.Column="0"
+                        WidthRequest="40"
+                        HeightRequest="40"
+                        StrokeThickness="0"
+                        BackgroundColor="#F3F4F6"
+                        VerticalOptions="Center">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="10"/>
+                    </Border.StrokeShape>
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnVolverClicked"/>
+                    </Border.GestureRecognizers>
+                    <Label Text="←"
+                           FontSize="22"
+                           TextColor="{StaticResource TextPrimary}"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center"/>
+                </Border>
+
+                <!-- Título -->
+                <VerticalStackLayout Grid.Column="1" 
+                                   Spacing="2" 
+                                   VerticalOptions="Center"
+                                   Margin="15,0,0,0">
+                    <Label Text="Gestión de Alumnos"
+                           FontFamily="InterBold"
+                           FontSize="20"
+                           FontAttributes="Bold"
+                           TextColor="{StaticResource TextPrimary}"/>
+                    <Label x:Name="lblTotalAlumnos"
+                           Text="0 alumnos registrados"
+                           FontSize="13"
+                           TextColor="{StaticResource TextSecondary}"/>
+                </VerticalStackLayout>
+
+                <!-- Botón Agregar -->
+                <Border Grid.Column="2"
+                        WidthRequest="40"
+                        HeightRequest="40"
+                        StrokeThickness="0"
+                        BackgroundColor="{StaticResource Primary}"
+                        VerticalOptions="Center">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="10"/>
+                    </Border.StrokeShape>
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnAgregarAlumnoClicked"/>
+                    </Border.GestureRecognizers>
+                    <Label Text="+"
+                           FontSize="24"
+                           TextColor="White"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center"
+                           Margin="0,-2,0,0"/>
+                </Border>
+            </Grid>
+        </Border>
+
+        <!-- Contenido Principal -->
+        <ScrollView Grid.Row="1">
+            <VerticalStackLayout Padding="15" Spacing="15">
+
+                <!-- Barra de Búsqueda -->
+                <Border StrokeThickness="1"
+                        Stroke="#E5E7EB"
+                        BackgroundColor="White"
+                        Padding="12,8">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="12"/>
+                    </Border.StrokeShape>
+                    <HorizontalStackLayout Spacing="10">
+                        <Label Text="🔍" FontSize="18" VerticalOptions="Center"/>
+                        <Entry x:Name="searchEntry"
+                               Placeholder="Buscar por nombre, matrícula o email..."
+                               PlaceholderColor="#9CA3AF"
+                               TextColor="{StaticResource TextPrimary}"
+                               FontSize="14"
+                               HorizontalOptions="FillAndExpand"
+                               TextChanged="OnSearchTextChanged"
+                               BackgroundColor="Transparent"/>
+                    </HorizontalStackLayout>
+                </Border>
+
+                <!-- Filtros de Estado -->
+                <HorizontalStackLayout Spacing="10">
+                    <Border x:Name="btnTodos"
+                            Padding="15,8"
+                            BackgroundColor="{StaticResource Primary}"
+                            StrokeThickness="0">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="8"/>
+                        </Border.StrokeShape>
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnFiltroTodosClicked"/>
+                        </Border.GestureRecognizers>
+                        <Label Text="Todos"
+                               FontSize="13"
+                               FontAttributes="Bold"
+                               TextColor="White"/>
+                    </Border>
+
+                    <Border x:Name="btnActivos"
+                            Padding="15,8"
+                            BackgroundColor="#E5E7EB"
+                            StrokeThickness="0">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="8"/>
+                        </Border.StrokeShape>
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnFiltroActivosClicked"/>
+                        </Border.GestureRecognizers>
+                        <Label Text="Activos"
+                               FontSize="13"
+                               FontAttributes="Bold"
+                               TextColor="{StaticResource TextSecondary}"/>
+                    </Border>
+
+                    <Border x:Name="btnInactivos"
+                            Padding="15,8"
+                            BackgroundColor="#E5E7EB"
+                            StrokeThickness="0">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="8"/>
+                        </Border.StrokeShape>
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnFiltroInactivosClicked"/>
+                        </Border.GestureRecognizers>
+                        <Label Text="Inactivos"
+                               FontSize="13"
+                               FontAttributes="Bold"
+                               TextColor="{StaticResource TextSecondary}"/>
+                    </Border>
+                </HorizontalStackLayout>
+
+                <!-- Lista de Alumnos -->
+                <VerticalStackLayout x:Name="listaAlumnos" Spacing="12">
+                    <!-- Los alumnos se cargarán dinámicamente aquí -->
+                </VerticalStackLayout>
+
+                <!-- Mensaje cuando no hay resultados -->
+                <VerticalStackLayout x:Name="noResultsView"
+                                   Spacing="10"
+                                   Padding="20"
+                                   IsVisible="False"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center"
+                                   Margin="0,50,0,0">
+                    <Label Text="📭"
+                           FontSize="50"
+                           HorizontalOptions="Center"/>
+                    <Label Text="No se encontraron alumnos"
+                           FontSize="16"
+                           FontAttributes="Bold"
+                           TextColor="{StaticResource TextPrimary}"
+                           HorizontalOptions="Center"/>
+                    <Label Text="Intenta con otro término de búsqueda"
+                           FontSize="13"
+                           TextColor="{StaticResource TextSecondary}"
+                           HorizontalOptions="Center"/>
+                </VerticalStackLayout>
+
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <!-- Loading Indicator -->
+        <ActivityIndicator x:Name="loadingIndicator"
+                          Grid.Row="1"
+                          IsRunning="False"
+                          IsVisible="False"
+                          Color="{StaticResource Primary}"
+                          VerticalOptions="Center"
+                          HorizontalOptions="Center"/>
+
+    </Grid>
+
+</ContentPage>
