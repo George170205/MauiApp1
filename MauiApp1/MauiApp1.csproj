@@ -65,4 +65,10 @@
 		<PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.16.0" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <MauiXaml Update="src\Presentation\Views\TeachersPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	</ItemGroup>
+
 </Project>

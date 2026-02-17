@@ -98,7 +98,7 @@ namespace MauiApp1
                     break;
 
                 case "2":
-                    await DisplayAlert("Rol", "Entrando como Docente", "OK");
+                    await Navigation.PushAsync(new TeachersPage()); 
                     break;
 
                 case "3":
