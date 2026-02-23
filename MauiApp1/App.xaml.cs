@@ -1,15 +1,25 @@
-﻿namespace MauiApp1
+﻿namespace MauiApp1;
+
+public partial class App : Application
 {
-    public partial class App : Application
+    public App()
     {
-        public App()
-        {
-            InitializeComponent();
+        InitializeComponent();
+        MainPage = new AppShell();
+    }
 
-            var navigationPage = new NavigationPage(new LoginPage());
-            NavigationPage.SetHasNavigationBar(navigationPage, false);
+    protected override void OnStart()
+    {
+        System.Diagnostics.Debug.WriteLine(" CICLO DE VIDA: Aplicación Iniciada");
+    }
 
-            MainPage = navigationPage;
-        }
+    protected override void OnSleep()
+    {
+        System.Diagnostics.Debug.WriteLine(" CICLO DE VIDA: En Segundo Plano");
+    }
+
+    protected override void OnResume()
+    {
+        System.Diagnostics.Debug.WriteLine(" CICLO DE VIDA: Resumida");
     }
 }
