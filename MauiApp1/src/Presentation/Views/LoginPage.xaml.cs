@@ -79,9 +79,8 @@ namespace MauiApp1
                 Preferences.Set("rolID", rolID ?? "");
                 Preferences.Set("usuario", email ?? "");
 
-                await DisplayAlert("Bienvenido", $"Usuario: {email}", "OK");
-
                 await NavegarSegunRolID(rolID);
+
             }
             catch (Exception ex)
             {
@@ -94,11 +93,11 @@ namespace MauiApp1
             switch (rolID)
             {
                 case "1":
-                    await DisplayAlert("Rol", "Entrando como Alumno", "OK");
+                    await Shell.Current.GoToAsync("//AlumnoTabs");
                     break;
 
                 case "2":
-                    await Navigation.PushAsync(new TeachersPage()); 
+                    await Navigation.PushAsync(new TeachersPage());
                     break;
 
                 case "3":
@@ -110,6 +109,7 @@ namespace MauiApp1
                     break;
             }
         }
+
 
         private async void OnAyudaClicked(object sender, EventArgs e)
         {

@@ -4,10 +4,37 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:MauiApp1"
-    Title="MauiApp1">
+    xmlns:views="clr-namespace:MauiApp1.src.Presentation.Views"
+    Shell.BackgroundColor="White"
+    Shell.TitleColor="#1A1A2E"
+    Shell.TabBarBackgroundColor="White"
+    Shell.TabBarForegroundColor="#2563EB"
+    Shell.TabBarTitleColor="#2563EB"
+    Shell.TabBarUnselectedColor="#9CA3AF">
 
     <ShellContent
-        ContentTemplate="{DataTemplate local:LoginPage}"
-        Route="LoginPage" />
+        Route="LoginPage"
+        Shell.TabBarIsVisible="False"
+        ContentTemplate="{DataTemplate local:LoginPage}" />
+
+    <!-- TabBar del alumno-->
+    <TabBar Route="AlumnoTabs">
+        <ShellContent
+            Title="Inicio"
+            Icon="home.svg"
+            ContentTemplate="{DataTemplate views:HomeAlumnoPage}" />
+        <ShellContent
+            Title="Asistencia"
+            Icon="attendance.svg"
+            ContentTemplate="{DataTemplate views:AsistenciaPage}" />
+        <ShellContent
+            Title="Horario"
+            Icon="calendar.svg"
+            ContentTemplate="{DataTemplate views:HorarioAlumnoPage}" />
+        <ShellContent
+            Title="Perfil"
+            Icon="user.svg"
+            ContentTemplate="{DataTemplate views:PerfilAlumnoPage}" />
+    </TabBar>
 
 </Shell>
