@@ -72,7 +72,7 @@
 	  <MauiXaml Update="src\Presentation\Views\AlumnosPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="src\Presentation\Views\AsistenciaPage.xaml">
+	  <MauiXaml Update="src\Presentation\Views\Student\AsistenciaPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="src\Presentation\Views\DistribucionGruposPage.xaml">
@@ -81,16 +81,16 @@
 	  <MauiXaml Update="src\Presentation\Views\DocentesPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="src\Presentation\Views\HomeAlumnoPage.xaml">
+	  <MauiXaml Update="src\Presentation\Views\Student\HomeAlumnoPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="src\Presentation\Views\HorarioAlumnoPage.xaml">
+	  <MauiXaml Update="src\Presentation\Views\Student\HorarioAlumnoPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="src\Presentation\Views\HorarioDocentePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="src\Presentation\Views\PerfilAlumnoPage.xaml">
+	  <MauiXaml Update="src\Presentation\Views\Student\PerfilAlumnoPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>

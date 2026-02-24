@@ -2,7 +2,7 @@
 using MauiApp1.src.Core.Models;
 using Microsoft.Maui.Graphics;
 
-namespace MauiApp1.src.Presentation.ViewModels
+namespace MauiApp1.src.Presentation.ViewModels.Student
 {
     public class HomeAlumnoViewModel
     {
@@ -13,7 +13,6 @@ namespace MauiApp1.src.Presentation.ViewModels
         public int Materias { get; set; } = 6;
         public double Promedio { get; set; } = 8.7;
 
-        // Antes eran 3 strings sueltos, ahora un objeto ClaseInfo
         public ClaseInfo ProximaClase { get; set; }
 
         public ObservableCollection<Materia> MateriasList { get; set; }
