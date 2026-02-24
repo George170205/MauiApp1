@@ -41,7 +41,7 @@ namespace MauiApp1.src.Presentation.ViewModels.Student
             {
                 Nombre = "Lenguaje C",
                 Profesor = "Dr. Chespirito Hernandez",
-                Iniciales = "LC",
+                
                 HoraInicio = "10:00 AM",
                 Salon = "B-301",
                 Acento = Color.FromArgb("#16A34A")

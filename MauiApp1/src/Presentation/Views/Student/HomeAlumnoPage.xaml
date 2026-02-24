@@ -1,7 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiApp1.src.Presentation.Views.HomeAlumnoPage"
-             BackgroundColor="#F4F6FA">
+             BackgroundColor="#F4F6FA"
+             Title="Inicio">
 
     <ContentPage.Resources>
         <Style TargetType="Label">
@@ -13,106 +15,159 @@
             <Setter Property="StrokeThickness" Value="1" />
         </Style>
     </ContentPage.Resources>
-    
+
     <Shell.TitleView>
         <HorizontalStackLayout Spacing="10" VerticalOptions="Center">
             <Border WidthRequest="36"
-                HeightRequest="36"
-                StrokeShape="RoundRectangle 10"
-                BackgroundColor="#2563EB"
-                StrokeThickness="0">
-                <!-- <Image Source="logo.png"/> -->
+                    HeightRequest="36"
+                    StrokeShape="RoundRectangle 10"
+                    BackgroundColor="#2563EB"
+                    StrokeThickness="0">
             </Border>
             <Label Text="Link"
-               FontSize="20"
-               FontAttributes="Bold"
-               TextColor="Black"
-               VerticalOptions="Center" />
+                   FontSize="20"
+                   FontAttributes="Bold"
+                   TextColor="#1E3A5F"
+                   VerticalOptions="Center" />
         </HorizontalStackLayout>
     </Shell.TitleView>
-    
-    <ScrollView>
-        <VerticalStackLayout Padding="24" Spacing="18">
 
-            <Border StrokeShape="RoundRectangle 20" Padding="16">
-                <HorizontalStackLayout Spacing="14">
-                    <Border WidthRequest="60" HeightRequest="60"
-                            BackgroundColor="#2563EB" StrokeThickness="0"
-                            StrokeShape="RoundRectangle 30" VerticalOptions="Center">
-                        <Label Text="{Binding Iniciales}" TextColor="White"
-                               FontSize="20" FontAttributes="Bold"
-                               HorizontalOptions="Center" VerticalOptions="Center" />
+    <ScrollView>
+        <VerticalStackLayout Padding="24" Spacing="24">
+
+            <Border StrokeShape="RoundRectangle 20" Padding="20">
+                <Grid ColumnDefinitions="Auto,*">
+                    <Border Grid.Column="0" 
+                            WidthRequest="56" 
+                            HeightRequest="56"
+                            BackgroundColor="#2563EB" 
+                            StrokeThickness="0"
+                            StrokeShape="RoundRectangle 28" 
+                            VerticalOptions="Center">
+                        <Label Text="{Binding Iniciales}" 
+                               TextColor="White"
+                               FontSize="18" 
+                               FontAttributes="Bold"
+                               HorizontalOptions="Center" 
+                               VerticalOptions="Center" />
                     </Border>
-                    <VerticalStackLayout VerticalOptions="Center">
-                        <Label Text="{Binding Nombre}" FontSize="18" FontAttributes="Bold" />
-                        <Label Text="{Binding Carrera}" FontSize="13" TextColor="#6B7280" />
+                    <VerticalStackLayout Grid.Column="1" VerticalOptions="Center" Spacing="2" Margin="16,0,0,0">
+                        <Label Text="Hola," FontSize="13" TextColor="#6B7280" />
+                        <Label Text="{Binding Nombre}" FontSize="20" FontAttributes="Bold" TextColor="#1A1A2E" />
+                        <Label Text="{Binding Carrera}" FontSize="13" TextColor="#2563EB" FontAttributes="Bold" />
                     </VerticalStackLayout>
-                </HorizontalStackLayout>
+                </Grid>
             </Border>
 
             <Grid ColumnDefinitions="*,*,*" ColumnSpacing="12">
-                <Border Grid.Column="0" StrokeShape="RoundRectangle 14" Padding="18">
+                <Border Grid.Column="0" StrokeShape="RoundRectangle 16" Padding="16">
                     <VerticalStackLayout Spacing="4" HorizontalOptions="Center">
-                        <Label Text="{Binding Asistencias}" FontSize="22" FontAttributes="Bold" HorizontalOptions="Center" />
-                        <Label Text="Asistencias" FontSize="12" TextColor="#6B7280" HorizontalOptions="Center" />
+                        <Label Text="{Binding Asistencias}" FontSize="24" FontAttributes="Bold" TextColor="#2563EB" HorizontalOptions="Center" />
+                        <Label Text="Asistencias" FontSize="11" TextColor="#6B7280" HorizontalOptions="Center" />
                     </VerticalStackLayout>
                 </Border>
-                <Border Grid.Column="1" StrokeShape="RoundRectangle 14" Padding="18">
+                <Border Grid.Column="1" StrokeShape="RoundRectangle 16" Padding="16">
                     <VerticalStackLayout Spacing="4" HorizontalOptions="Center">
-                        <Label Text="{Binding Materias}" FontSize="22" FontAttributes="Bold" HorizontalOptions="Center" />
-                        <Label Text="Materias" FontSize="12" TextColor="#6B7280" HorizontalOptions="Center" />
+                        <Label Text="{Binding Materias}" FontSize="24" FontAttributes="Bold" TextColor="#2563EB" HorizontalOptions="Center" />
+                        <Label Text="Materias" FontSize="11" TextColor="#6B7280" HorizontalOptions="Center" />
                     </VerticalStackLayout>
                 </Border>
-                <Border Grid.Column="2" StrokeShape="RoundRectangle 14" Padding="18">
+                <Border Grid.Column="2" StrokeShape="RoundRectangle 16" Padding="16">
                     <VerticalStackLayout Spacing="4" HorizontalOptions="Center">
-                        <Label Text="{Binding Promedio}" FontSize="22" FontAttributes="Bold" HorizontalOptions="Center" />
-                        <Label Text="Promedio" FontSize="12" TextColor="#6B7280" HorizontalOptions="Center" />
+                        <Label Text="{Binding Promedio}" FontSize="24" FontAttributes="Bold" TextColor="#2563EB" HorizontalOptions="Center" />
+                        <Label Text="Promedio" FontSize="11" TextColor="#6B7280" HorizontalOptions="Center" />
                     </VerticalStackLayout>
                 </Border>
             </Grid>
 
-            <Border Padding="22" StrokeShape="RoundRectangle 22"
-                    BackgroundColor="#2563EB" StrokeThickness="0">
-                <Grid ColumnDefinitions="*,Auto">
-                    <VerticalStackLayout Spacing="6">
-                        <Label Text="Próxima Clase" FontSize="13" TextColor="White" Opacity="0.8" />
-                        <Label Text="{Binding ProximaClase.Nombre}" FontSize="18" FontAttributes="Bold" TextColor="White" />
-                        <Label Text="{Binding ProximaClase.Salon}" FontSize="13" TextColor="White" Opacity="0.9" />
+            <VerticalStackLayout Spacing="10">
+                <Label Text="Próxima clase"
+                       FontSize="14"
+                       FontAttributes="Bold"
+                       TextColor="#6B7280" />
+
+                <Border StrokeShape="RoundRectangle 20"
+                        Padding="20"
+                        BackgroundColor="#2563EB"
+                        StrokeThickness="0">
+                    <VerticalStackLayout Spacing="12">
+                        <Label Text="{Binding ProximaClase.Nombre}"
+                               FontSize="20"
+                               FontAttributes="Bold"
+                               TextColor="White" />
+
+                        <Label Text="{Binding ProximaClase.Profesor}"
+                               FontSize="14"
+                               TextColor="#FFFFFFCC" />
+
+                        <BoxView HeightRequest="1" Color="#FFFFFF33" />
+
+                        <Grid ColumnDefinitions="*,*">
+                            <VerticalStackLayout Grid.Column="0" Spacing="2">
+                                <Label Text="Inicio" FontSize="11" TextColor="#FFFFFF99" />
+                                <Label Text="{Binding ProximaClase.HoraInicio}" FontSize="14" FontAttributes="Bold" TextColor="White" />
+                            </VerticalStackLayout>
+                            <VerticalStackLayout Grid.Column="1" Spacing="2" HorizontalOptions="End">
+                                <Label Text="Salón" FontSize="11" TextColor="#FFFFFF99" HorizontalOptions="End" />
+                                <Label Text="{Binding ProximaClase.Salon}" FontSize="14" FontAttributes="Bold" TextColor="White" HorizontalOptions="End" />
+                            </VerticalStackLayout>
+                        </Grid>
                     </VerticalStackLayout>
-                    <Label Grid.Column="1" Text="{Binding ProximaClase.HoraInicio}"
-                           FontSize="24" FontAttributes="Bold" TextColor="White"
-                           VerticalOptions="Center" HorizontalOptions="End" />
-                </Grid>
-            </Border>
+                </Border>
+            </VerticalStackLayout>
 
-            <Label Text="Tus Materias" FontSize="18" FontAttributes="Bold" Margin="0,6,0,0" />
+            <VerticalStackLayout Spacing="10">
+                <Label Text="Tus Materias" 
+                       FontSize="14" 
+                       FontAttributes="Bold" 
+                       TextColor="#6B7280" />
 
-            <VerticalStackLayout Spacing="2" BindableLayout.ItemsSource="{Binding MateriasList}">
-                <BindableLayout.ItemTemplate>
-                    <DataTemplate>
-                        <Border Margin="0,0,0,10" StrokeShape="RoundRectangle 16"
-                                StrokeThickness="1" Stroke="#E8ECF0"
-                                BackgroundColor="White" Padding="0" HeightRequest="100">
-                            <Grid ColumnDefinitions="8,*,Auto">
-                                <BoxView Grid.Column="0" Color="{Binding Acento}" CornerRadius="16,0,16,0" />
-                                <VerticalStackLayout Grid.Column="1" Spacing="6" Padding="16" VerticalOptions="Center">
-                                    <Label Text="{Binding Nombre}" FontSize="16" FontAttributes="Bold" />
-                                    <Label Text="{Binding Profesor}" FontSize="13" TextColor="#6B7280" />
-                                    <Grid ColumnDefinitions="*,Auto">
-                                        <Label Text="{Binding Horario}" FontSize="12" TextColor="#9CA3AF" />
-                                        <Label Grid.Column="1" Text="{Binding Salon}" FontSize="12" TextColor="#9CA3AF" />
-                                    </Grid>
-                                </VerticalStackLayout>
-                                <Border Grid.Column="2" BackgroundColor="{Binding Acento}"
-                                        StrokeThickness="0" StrokeShape="RoundRectangle 12"
-                                        Padding="10,4" VerticalOptions="Start" Margin="0,12,12,0">
-                                    <Label Text="{Binding Porcentaje, StringFormat='{0}%'}"
-                                           TextColor="White" FontSize="12" FontAttributes="Bold" />
-                                </Border>
-                            </Grid>
-                        </Border>
-                    </DataTemplate>
-                </BindableLayout.ItemTemplate>
+                <VerticalStackLayout Spacing="12" BindableLayout.ItemsSource="{Binding MateriasList}">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <Border StrokeShape="RoundRectangle 16" Padding="16">
+                                <Grid ColumnDefinitions="Auto,*,Auto">
+
+                                    <Border Grid.Column="0"
+                                            WidthRequest="48"
+                                            HeightRequest="48"
+                                            StrokeThickness="0"
+                                            StrokeShape="RoundRectangle 14"
+                                            BackgroundColor="{Binding Acento}"
+                                            VerticalOptions="Center"
+                                            Style="{x:Null}">
+                                        <Label Text="{Binding Iniciales}"
+                                               TextColor="White"
+                                               FontSize="15"
+                                               FontAttributes="Bold"
+                                               HorizontalOptions="Center"
+                                               VerticalOptions="Center" />
+                                    </Border>
+
+                                    <VerticalStackLayout Grid.Column="1" VerticalOptions="Center" Spacing="4" Margin="14,0,0,0">
+                                        <Label Text="{Binding Nombre}" FontSize="15" FontAttributes="Bold" TextColor="#1E3A5F" />
+                                        <Label Text="{Binding Profesor}" FontSize="12" TextColor="#6B7280" />
+                                    </VerticalStackLayout>
+
+                                    <VerticalStackLayout Grid.Column="2" VerticalOptions="Center" HorizontalOptions="End" Spacing="6">
+                                        <Border BackgroundColor="#F4F6FA"
+                                                StrokeThickness="0" 
+                                                StrokeShape="RoundRectangle 8"
+                                                Padding="8,4" 
+                                                HorizontalOptions="End">
+                                            <Label Text="{Binding Porcentaje, StringFormat='{0}%'}"
+                                                   TextColor="#2563EB" 
+                                                   FontSize="12" 
+                                                   FontAttributes="Bold" />
+                                        </Border>
+                                        <Label Text="{Binding Salon}" FontSize="11" TextColor="#9CA3AF" HorizontalOptions="End" />
+                                    </VerticalStackLayout>
+
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </VerticalStackLayout>
             </VerticalStackLayout>
 
         </VerticalStackLayout>

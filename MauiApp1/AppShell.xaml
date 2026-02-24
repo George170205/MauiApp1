@@ -3,6 +3,7 @@
     x:Class="MauiApp1.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:MauiApp1"
     xmlns:views="clr-namespace:MauiApp1.src.Presentation.Views"
     Shell.BackgroundColor="White"
     Shell.TitleColor="#1A1A2E"
@@ -10,6 +11,13 @@
     Shell.TabBarForegroundColor="#2563EB"
     Shell.TabBarTitleColor="#2563EB"
     Shell.TabBarUnselectedColor="#9CA3AF">
+
+    <ShellContent
+        Route="LoginPage"
+        Shell.TabBarIsVisible="False"
+        ContentTemplate="{DataTemplate local:LoginPage}" />
+
+    <!-- TabBar del alumno-->
     <TabBar Route="AlumnoTabs">
         <ShellContent
             Title="Inicio"
@@ -28,4 +36,5 @@
             Icon="user.svg"
             ContentTemplate="{DataTemplate views:PerfilAlumnoPage}" />
     </TabBar>
+
 </Shell>
