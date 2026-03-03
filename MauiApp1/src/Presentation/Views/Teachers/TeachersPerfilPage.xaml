@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiApp1.TeachersPerfilPage"
+             Title="Perfil Docente">
+
+    <Grid BackgroundColor="#F5F5F5">
+        <ScrollView>
+            <VerticalStackLayout Padding="20" Spacing="20">
+
+                <!-- Header con perfil -->
+                <Frame BackgroundColor="White" 
+                       CornerRadius="12" 
+                       Padding="15"
+                       HasShadow="True">
+                    <HorizontalStackLayout Spacing="15">
+                        <Frame BackgroundColor="#4CAF50" 
+                               CornerRadius="30" 
+                               Padding="0"
+                               WidthRequest="60" 
+                               HeightRequest="60"
+                               HasShadow="False">
+                            <Label Text="RL" 
+                                   FontSize="24" 
+                                   FontAttributes="Bold"
+                                   TextColor="White"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center"/>
+                        </Frame>
+
+                        <VerticalStackLayout VerticalOptions="Center" Spacing="5">
+                            <Label Text="Rodrigo Lara" 
+                                   FontSize="16" 
+                                   FontAttributes="Bold"
+                                   TextColor="#2C3E50"/>
+                            <Label Text="Seguridad de redes" 
+                                   FontSize="12" 
+                                   TextColor="#7F8C8D"/>
+                        </VerticalStackLayout>
+                    </HorizontalStackLayout>
+                </Frame>
+
+                <!-- Información General -->
+                <Frame BackgroundColor="White" 
+                       CornerRadius="12" 
+                       Padding="15"
+                       HasShadow="True">
+                    <VerticalStackLayout Spacing="15">
+                        <Label Text="Información General" 
+                               FontSize="16" 
+                               FontAttributes="Bold"
+                               TextColor="#2C3E50"/>
+
+                        <!-- Materias activas -->
+                        <Grid ColumnDefinitions="*,Auto">
+                            <Label Grid.Column="0"
+                                   Text="Materias activas" 
+                                   FontSize="14" 
+                                   TextColor="#2C3E50"/>
+                            <Label Grid.Column="1"
+                                   Text="7" 
+                                   FontSize="14" 
+                                   FontAttributes="Bold"
+                                   TextColor="#2C3E50"/>
+                        </Grid>
+
+                        <BoxView HeightRequest="1" BackgroundColor="#E0E0E0"/>
+
+                        <!-- Grupos activos -->
+                        <Grid ColumnDefinitions="*,Auto">
+                            <Label Grid.Column="0"
+                                   Text="Grupos activos" 
+                                   FontSize="14" 
+                                   TextColor="#2C3E50"/>
+                            <Label Grid.Column="1"
+                                   Text="3" 
+                                   FontSize="14" 
+                                   FontAttributes="Bold"
+                                   TextColor="#2C3E50"/>
+                        </Grid>
+
+                        <BoxView HeightRequest="1" BackgroundColor="#E0E0E0"/>
+
+                        <!-- Horas a la semana -->
+                        <Grid ColumnDefinitions="*,Auto">
+                            <Label Grid.Column="0"
+                                   Text="Horas a la semana" 
+                                   FontSize="14" 
+                                   TextColor="#2C3E50"/>
+                            <Label Grid.Column="1"
+                                   Text="40" 
+                                   FontSize="14" 
+                                   FontAttributes="Bold"
+                                   TextColor="#2C3E50"/>
+                        </Grid>
+
+                        <BoxView HeightRequest="1" BackgroundColor="#E0E0E0"/>
+
+                        <!-- Avisos recibidos -->
+                        <Grid ColumnDefinitions="*,Auto">
+                            <Label Grid.Column="0"
+                                   Text="Avisos recibidos" 
+                                   FontSize="14" 
+                                   TextColor="#2C3E50"/>
+                            <Label Grid.Column="1"
+                                   Text="2" 
+                                   FontSize="14" 
+                                   FontAttributes="Bold"
+                                   TextColor="#2C3E50"/>
+                        </Grid>
+                    </VerticalStackLayout>
+                </Frame>
+
+                <!-- Solicitud de reportes -->
+                <Frame BackgroundColor="White" 
+                       CornerRadius="12" 
+                       Padding="15"
+                       HasShadow="True">
+                    <VerticalStackLayout Spacing="12">
+                        <Label Text="Solicitud de reportes" 
+                               FontSize="16" 
+                               FontAttributes="Bold"
+                               TextColor="#2C3E50"/>
+
+                        <!-- Reporte de asistencias -->
+                        <Button Text="Reporte de asistencias (Día de hoy)" 
+                                BackgroundColor="#4CAF50"
+                                TextColor="White"
+                                CornerRadius="8"
+                                Padding="12"/>
+
+                        <!-- Reporte semanal -->
+                        <Button Text="Reporte semanal de asistencias" 
+                                BackgroundColor="#4CAF50"
+                                TextColor="White"
+                                CornerRadius="8"
+                                Padding="12"/>
+
+                        <!-- Reporte final -->
+                        <Button Text="Reporte final de asistencias" 
+                                BackgroundColor="#E74C3C"
+                                TextColor="White"
+                                CornerRadius="8"
+                                Padding="12"/>
+                    </VerticalStackLayout>
+                </Frame>
+
+                <!-- Ajustes -->
+                <Frame BackgroundColor="White" 
+                       CornerRadius="12" 
+                       Padding="15"
+                       HasShadow="True">
+                    <VerticalStackLayout Spacing="12">
+                        <Label Text="Ajustes" 
+                               FontSize="16" 
+                               FontAttributes="Bold"
+                               TextColor="#2C3E50"/>
+
+                        <!-- Materias y horarios -->
+                        <Button Text="Materias y horarios" 
+                                BackgroundColor="#F8F9FA"
+                                TextColor="#2C3E50"
+                                CornerRadius="8"
+                                Padding="12"
+                                HorizontalOptions="FillAndExpand"/>
+
+                        <!-- Tiempo de generación de QR -->
+                        <Button Text="Tiempo de generación de QR" 
+                                BackgroundColor="#F8F9FA"
+                                TextColor="#2C3E50"
+                                CornerRadius="8"
+                                Padding="12"
+                                HorizontalOptions="FillAndExpand"/>
+
+                        <!-- Notificaciones -->
+                        <Button Text="Notificaciones" 
+                                BackgroundColor="#F8F9FA"
+                                TextColor="#2C3E50"
+                                CornerRadius="8"
+                                Padding="12"
+                                HorizontalOptions="FillAndExpand"/>
+
+                        <!-- Preferencias del sistema -->
+                        <Button Text="Preferencias del sistema" 
+                                BackgroundColor="#F8F9FA"
+                                TextColor="#2C3E50"
+                                CornerRadius="8"
+                                Padding="12"
+                                HorizontalOptions="FillAndExpand"/>
+                    </VerticalStackLayout>
+                </Frame>
+
+                <!-- Solicitud de ajustes -->
+                <Frame BackgroundColor="White" 
+                       CornerRadius="12" 
+                       Padding="15"
+                       HasShadow="True">
+                    <VerticalStackLayout Spacing="12">
+                        <Label Text="Solicitud de ajustes" 
+                               FontSize="16" 
+                               FontAttributes="Bold"
+                               TextColor="#2C3E50"/>
+
+                        <!-- Solicitud de ajuste administrativo -->
+                        <Button Text="Solicitud de ajuste administrativo" 
+                                BackgroundColor="#FFF9C4"
+                                TextColor="#2C3E50"
+                                CornerRadius="8"
+                                Padding="12"
+                                HorizontalOptions="FillAndExpand"/>
+                    </VerticalStackLayout>
+                </Frame>
+
+                <BoxView HeightRequest="80"/>
+
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <!-- Bottom Navigation Bar -->
+        <Frame VerticalOptions="End" 
+               BackgroundColor="White" 
+               CornerRadius="0" 
+               Padding="0"
+               HasShadow="True">
+            <Grid ColumnDefinitions="*,*,*" 
+                  Padding="10,5"
+                  HeightRequest="60">
+
+                <VerticalStackLayout Grid.Column="0" 
+                                     Spacing="5"
+                                     HorizontalOptions="Center">
+                    <Button Text="🏠" 
+                            FontSize="24"
+                            BackgroundColor="Transparent"
+                            TextColor="#7F8C8D"
+                            Clicked="OnInicioClicked"/>
+                    <Label Text="Inicio" 
+                           FontSize="11" 
+                           TextColor="#7F8C8D"
+                           HorizontalOptions="Center"/>
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Grid.Column="1" 
+                                     Spacing="5"
+                                     HorizontalOptions="Center">
+                    <Button Text="📅" 
+                            FontSize="24"
+                            BackgroundColor="Transparent"
+                            TextColor="#7F8C8D"
+                            Clicked="OnHorarioClicked"/>
+                    <Label Text="Horario" 
+                           FontSize="11" 
+                           TextColor="#7F8C8D"
+                           HorizontalOptions="Center"/>
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Grid.Column="2" 
+                                     Spacing="5"
+                                     HorizontalOptions="Center">
+                    <Button Text="👤" 
+                            FontSize="24"
+                            BackgroundColor="Transparent"
+                            TextColor="#3498DB"
+                            Clicked="OnPerfilClicked"/>
+                    <Label Text="Perfil" 
+                           FontSize="11" 
+                           TextColor="#3498DB"
+                           HorizontalOptions="Center"/>
+                </VerticalStackLayout>
+            </Grid>
+        </Frame>
+    </Grid>
+</ContentPage>

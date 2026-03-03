@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiApp1.TeachersMateriaPage"
+             Title="Perfil de Materia">
+
+    <Grid BackgroundColor="#F5F5F5">
+        <ScrollView>
+            <VerticalStackLayout Padding="20" Spacing="20">
+
+                <!-- Header con perfil -->
+                <Frame BackgroundColor="White" 
+                       CornerRadius="12" 
+                       Padding="15"
+                       HasShadow="True">
+                    <HorizontalStackLayout Spacing="15">
+                        <Frame BackgroundColor="#2ECC71" 
+                               CornerRadius="30" 
+                               Padding="0"
+                               WidthRequest="60" 
+                               HeightRequest="60"
+                               HasShadow="False">
+                            <Label Text="DO" 
+                                   FontSize="24" 
+                                   FontAttributes="Bold"
+                                   TextColor="White"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center"/>
+                        </Frame>
+
+                        <VerticalStackLayout VerticalOptions="Center" Spacing="5">
+                            <Label Text="Desarrollo Organizacional" 
+                                   FontSize="16" 
+                                   FontAttributes="Bold"
+                                   TextColor="#2C3E50"/>
+                            <Label Text="Aula 022 - Laboratorio" 
+                                   FontSize="12" 
+                                   TextColor="#7F8C8D"/>
+                        </VerticalStackLayout>
+                    </HorizontalStackLayout>
+                </Frame>
+
+                <!-- Notas Rápidas -->
+                <Frame BackgroundColor="#FFF9C4" 
+                       CornerRadius="12" 
+                       Padding="15"
+                       HasShadow="True">
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="Notas Rápidas" 
+                               FontSize="14" 
+                               FontAttributes="Bold"
+                               TextColor="#2C3E50"/>
+                        <!-- Líneas de notas simuladas -->
+                        <BoxView HeightRequest="2" BackgroundColor="#F9A825" Opacity="0.3"/>
+                        <BoxView HeightRequest="2" BackgroundColor="#F9A825" Opacity="0.3"/>
+                        <BoxView HeightRequest="2" BackgroundColor="#F9A825" Opacity="0.3"/>
+                        <BoxView HeightRequest="2" BackgroundColor="#F9A825" Opacity="0.3"/>
+                        <BoxView HeightRequest="2" BackgroundColor="#F9A825" Opacity="0.3"/>
+                    </VerticalStackLayout>
+                </Frame>
+
+                <!-- Estadísticas -->
+                <Frame BackgroundColor="White" 
+                       CornerRadius="12" 
+                       Padding="15"
+                       HasShadow="True">
+                    <VerticalStackLayout Spacing="12">
+                        <Label Text="Estadísticos" 
+                               FontSize="16" 
+                               FontAttributes="Bold"
+                               TextColor="#2C3E50"/>
+
+                        <!-- Promedio de asistencias -->
+                        <Grid ColumnDefinitions="*,Auto">
+                            <Label Grid.Column="0"
+                                   Text="Promedio de asistencias" 
+                                   FontSize="14" 
+                                   TextColor="#2C3E50"
+                                   VerticalOptions="Center"/>
+                            <Label Grid.Column="1"
+                                   Text="12 /14" 
+                                   FontSize="14" 
+                                   FontAttributes="Bold"
+                                   TextColor="#2C3E50"/>
+                        </Grid>
+
+                        <BoxView HeightRequest="1" BackgroundColor="#E0E0E0"/>
+
+                        <!-- Promedio tiempo de asistencia -->
+                        <Grid ColumnDefinitions="*,Auto">
+                            <Label Grid.Column="0"
+                                   Text="Prom. tiempo de toma de asistencia" 
+                                   FontSize="14" 
+                                   TextColor="#2C3E50"
+                                   VerticalOptions="Center"/>
+                            <Label Grid.Column="1"
+                                   Text="2 : 50" 
+                                   FontSize="14" 
+                                   FontAttributes="Bold"
+                                   TextColor="#2C3E50"/>
+                        </Grid>
+
+                        <BoxView HeightRequest="1" BackgroundColor="#E0E0E0"/>
+
+                        <!-- Alumnos rezagados -->
+                        <Grid ColumnDefinitions="*,Auto">
+                            <Label Grid.Column="0"
+                                   Text="Alumnos rezagados" 
+                                   FontSize="14" 
+                                   TextColor="#2C3E50"
+                                   VerticalOptions="Center"/>
+                            <Label Grid.Column="1"
+                                   Text="2" 
+                                   FontSize="14" 
+                                   FontAttributes="Bold"
+                                   TextColor="#2C3E50"/>
+                        </Grid>
+                    </VerticalStackLayout>
+                </Frame>
+
+                <!-- Estudiantes presentes -->
+                <Frame BackgroundColor="White" 
+                       CornerRadius="12" 
+                       Padding="15"
+                       HasShadow="True">
+                    <VerticalStackLayout Spacing="12">
+                        <HorizontalStackLayout HorizontalOptions="FillAndExpand">
+                            <Label Text="Estudiantes presentes" 
+                                   FontSize="16" 
+                                   FontAttributes="Bold"
+                                   TextColor="#2C3E50"
+                                   HorizontalOptions="StartAndExpand"/>
+                            <Label Text="12 / 14" 
+                                   FontSize="16" 
+                                   FontAttributes="Bold"
+                                   TextColor="#3498DB"
+                                   HorizontalOptions="End"/>
+                        </HorizontalStackLayout>
+
+                        <!-- Lista de estudiantes -->
+                        <VerticalStackLayout Spacing="8">
+                            <!-- Estudiante 1 -->
+                            <Frame BackgroundColor="#F8F9FA" 
+                                   CornerRadius="8" 
+                                   Padding="12"
+                                   HasShadow="False">
+                                <HorizontalStackLayout Spacing="12">
+                                    <Frame BackgroundColor="#3498DB" 
+                                           CornerRadius="20" 
+                                           Padding="0"
+                                           WidthRequest="40" 
+                                           HeightRequest="40"
+                                           HasShadow="False">
+                                        <Label Text="JM" 
+                                               FontSize="14" 
+                                               FontAttributes="Bold"
+                                               TextColor="White"
+                                               HorizontalOptions="Center"
+                                               VerticalOptions="Center"/>
+                                    </Frame>
+                                    <Label Text="Juan Martínez López" 
+                                           FontSize="14" 
+                                           TextColor="#2C3E50"
+                                           VerticalOptions="Center"/>
+                                </HorizontalStackLayout>
+                            </Frame>
+
+                            <!-- Estudiante 2 -->
+                            <Frame BackgroundColor="#F8F9FA" 
+                                   CornerRadius="8" 
+                                   Padding="12"
+                                   HasShadow="False">
+                                <HorizontalStackLayout Spacing="12">
+                                    <Frame BackgroundColor="#2ECC71" 
+                                           CornerRadius="20" 
+                                           Padding="0"
+                                           WidthRequest="40" 
+                                           HeightRequest="40"
+                                           HasShadow="False">
+                                        <Label Text="SR" 
+                                               FontSize="14" 
+                                               FontAttributes="Bold"
+                                               TextColor="White"
+                                               HorizontalOptions="Center"
+                                               VerticalOptions="Center"/>
+                                    </Frame>
+                                    <Label Text="Ana Sofía Ramírez" 
+                                           FontSize="14" 
+                                           TextColor="#2C3E50"
+                                           VerticalOptions="Center"/>
+                                </HorizontalStackLayout>
+                            </Frame>
+
+                            <!-- Estudiante 3 -->
+                            <Frame BackgroundColor="#F8F9FA" 
+                                   CornerRadius="8" 
+                                   Padding="12"
+                                   HasShadow="False">
+                                <HorizontalStackLayout Spacing="12">
+                                    <Frame BackgroundColor="#F39C12" 
+                                           CornerRadius="20" 
+                                           Padding="0"
+                                           WidthRequest="40" 
+                                           HeightRequest="40"
+                                           HasShadow="False">
+                                        <Label Text="CF" 
+                                               FontSize="14" 
+                                               FontAttributes="Bold"
+                                               TextColor="White"
+                                               HorizontalOptions="Center"
+                                               VerticalOptions="Center"/>
+                                    </Frame>
+                                    <VerticalStackLayout VerticalOptions="Center">
+                                        <Label Text="Juan Martínez López" 
+                                               FontSize="14" 
+                                               TextColor="#2C3E50"/>
+                                        <Label Text="Registrado a las 10:02 AM" 
+                                               FontSize="11" 
+                                               TextColor="#7F8C8D"/>
+                                    </VerticalStackLayout>
+                                </HorizontalStackLayout>
+                            </Frame>
+                        </VerticalStackLayout>
+
+                        <!-- Botón generar reporte -->
+                        <Button Text="Generar reporte de asistencias (DO)" 
+                                BackgroundColor="#4CAF50"
+                                TextColor="White"
+                                CornerRadius="8"
+                                Padding="12"
+                                Margin="0,10,0,0"/>
+                    </VerticalStackLayout>
+                </Frame>
+
+                <BoxView HeightRequest="80"/>
+
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <!-- Bottom Navigation Bar -->
+        <Frame VerticalOptions="End" 
+               BackgroundColor="White" 
+               CornerRadius="0" 
+               Padding="0"
+               HasShadow="True">
+            <Grid ColumnDefinitions="*,*,*" 
+                  Padding="10,5"
+                  HeightRequest="60">
+
+                <VerticalStackLayout Grid.Column="0" 
+                                     Spacing="5"
+                                     HorizontalOptions="Center">
+                    <Button Text="🏠" 
+                            FontSize="24"
+                            BackgroundColor="Transparent"
+                            TextColor="#7F8C8D"
+                            Clicked="OnInicioClicked"/>
+                    <Label Text="Inicio" 
+                           FontSize="11" 
+                           TextColor="#7F8C8D"
+                           HorizontalOptions="Center"/>
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Grid.Column="1" 
+                                     Spacing="5"
+                                     HorizontalOptions="Center">
+                    <Button Text="📅" 
+                            FontSize="24"
+                            BackgroundColor="Transparent"
+                            TextColor="#7F8C8D"
+                            Clicked="OnHorarioClicked"/>
+                    <Label Text="Horario" 
+                           FontSize="11" 
+                           TextColor="#7F8C8D"
+                           HorizontalOptions="Center"/>
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Grid.Column="2" 
+                                     Spacing="5"
+                                     HorizontalOptions="Center">
+                    <Button Text="👤" 
+                            FontSize="24"
+                            BackgroundColor="Transparent"
+                            TextColor="#3498DB"
+                            Clicked="OnPerfilClicked"/>
+                    <Label Text="Perfil" 
+                           FontSize="11" 
+                           TextColor="#3498DB"
+                           HorizontalOptions="Center"/>
+                </VerticalStackLayout>
+            </Grid>
+        </Frame>
+    </Grid>
+</ContentPage>

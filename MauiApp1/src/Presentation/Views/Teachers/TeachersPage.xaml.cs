@@ -39,38 +39,82 @@ namespace MauiApp1
                         Color = qrPattern[row, col] == 1 ? Colors.Black : Colors.White
                     };
 
-                    QRGrid.Add(box, col, row);
+                    var grid = this.FindByName<Microsoft.Maui.Controls.Grid>("QRGrid");
+                    if (grid != null)
+                    {
+                        grid.Add(box, col, row);
+                    }
                 }
+
             }
+        }
+
+        // Handler para evento Tapped/Clicked asociado a "Mis Grupos" desde XAML
+        // Se añaden dos sobrecargas por compatibilidad con diferentes firmas de evento (TappedEventArgs o EventArgs)
+        private async void OnMisGruposTapped(object sender, EventArgs e)
+        {
+            await DisplayAlert("Mis Grupos", "Navegando a Mis Grupos...", "OK");
+            // await Navigation.PushAsync(new MisGruposPage()); // Descomentar si existe la página
+        }
+
+        private async void OnMisGruposTapped(object sender, Microsoft.Maui.Controls.TappedEventArgs e)
+        {
+            await DisplayAlert("Mis Grupos", "Navegando a Mis Grupos...", "OK");
+            // await Navigation.PushAsync(new MisGruposPage()); // Descomentar si existe la página
         }
 
         // Event Handler para el botón de configuración
         private async void OnConfiguracionClicked(object sender, EventArgs e)
         {
-            await DisplayAlert("Configuración", "Abriendo configuración...", "OK");
-            // Aquí navegarías a la página de configuración
-            // await Navigation.PushAsync(new ConfiguracionPage());
+            string accion = await DisplayActionSheet("Configuración", "Cancelar", null,
+                "Editar perfil", "Cambiar contraseña", "Cerrar sesión");
+
+            if (accion == "Cerrar sesión")
+            {
+                bool confirmar = await DisplayAlert("Cerrar sesión", "¿Estás seguro de que deseas cerrar sesión?", "Sí", "No");
+                if (confirmar)
+                {
+                    // Navegar al login
+                    Application.Current!.MainPage = new NavigationPage(new MainPage());
+                }
+            }
         }
 
-        // Event Handlers para los botones del menú principal
-        private async void OnMisGruposTapped(object sender, EventArgs e)
+        // Botón "Ver Clase" en la tarjeta de próxima clase
+        private async void OnVerClaseClicked(object sender, EventArgs e)
         {
-            await DisplayAlert("Mis Grupos", "Navegando a Mis Grupos...\n\n5 grupos activos", "OK");
-            // await Navigation.PushAsync(new GruposPage());
+            await Navigation.PushAsync(new TeachersMateriaPage());
         }
 
-        private async void OnAsistenciasTapped(object sender, EventArgs e)
+        // Botón "Ver Todas las Actividades"
+        private async void OnVerActividadesClicked(object sender, EventArgs e)
         {
-            await DisplayAlert("Asistencias", "Navegando a Asistencias...\n\n156 registros totales", "OK");
-            // await Navigation.PushAsync(new AsistenciasPage());
+            await DisplayAlert("Actividades", "Aquí se mostrarían todas las actividades recientes.", "Cerrar");
         }
 
-        private async void OnCalificacionesTapped(object sender, EventArgs e)
+        // Botón "Ver Todas las Alertas"
+        private async void OnVerAlertasClicked(object sender, EventArgs e)
         {
-            await DisplayAlert("Calificaciones", "Navegando a Calificaciones...\n\nPromedio general: 8.5", "OK");
-            // await Navigation.PushAsync(new CalificacionesPage());
+            await DisplayAlert("Alertas Pendientes", "Revisa las alertas en el panel de administración.", "Cerrar");
         }
 
+        // Navegación inferior: Inicio (ya estamos aquí, sin acción)
+        private void OnInicioClicked(object sender, EventArgs e)
+        {
+            // Ya estamos en la página principal
+        }
+
+        // Navegación inferior: Horario
+        private async void OnHorarioClicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new TeachersHorarioPage());
+        }
+
+        // Navegación inferior: Perfil
+        private async void OnPerfilClicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new TeachersPerfilPage());
+        }
         // Event Handler para regenerar el código QR
         private async void OnRegenerarQRClicked(object sender, EventArgs e)
         {
@@ -87,35 +131,6 @@ namespace MauiApp1
                 await DisplayAlert("QR Regenerado", "Nuevo código QR generado exitosamente", "OK");
                 // Podrías llamar a GenerateQRPattern() de nuevo con un nuevo patrón
             }
-        }
-
-        // Event Handler para ver detalles de la clase
-        private async void OnVerClaseClicked(object sender, EventArgs e)
-        {
-            await DisplayAlert(
-                "Detalles de la Clase",
-                "Grupo 5A - Álgebra Lineal\nHoy 10:30 AM\nAula 205\n32 alumnos\n\nTema: Sistemas de ecuaciones lineales",
-                "OK"
-            );
-            // await Navigation.PushAsync(new DetallesClasePage());
-        }
-
-        // Event Handler para ver actividades
-        private async void OnVerActividadesClicked(object sender, EventArgs e)
-        {
-            await DisplayAlert("Actividad Reciente", "Mostrando historial completo de actividades...", "OK");
-            // await Navigation.PushAsync(new ActividadesPage());
-        }
-
-        // Event Handler para ver alertas
-        private async void OnVerAlertasClicked(object sender, EventArgs e)
-        {
-            await DisplayAlert(
-                "Alertas Pendientes",
-                "• 5 alumnos con baja asistencia (<75%)\n• 3 calificaciones pendientes de capturar\n\nTotal: 2 alertas activas",
-                "OK"
-            );
-            // await Navigation.PushAsync(new AlertasPage());
         }
 
         // Event Handlers adicionales si necesitas agregar más funcionalidad
