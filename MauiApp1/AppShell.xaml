@@ -12,10 +12,7 @@
     Shell.TabBarTitleColor="#2563EB"
     Shell.TabBarUnselectedColor="#9CA3AF">
 
-    <ShellContent
-        Route="LoginPage"
-        Shell.TabBarIsVisible="False"
-        ContentTemplate="{DataTemplate local:LoginPage}" />
+  
 
     <!-- TabBar del alumno-->
     <TabBar Route="AlumnoTabs">
