@@ -41,7 +41,7 @@ namespace MauiApp1
         // Navegación inferior: Inicio
         private async void OnInicioClicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new TeachersPage());
+            await Navigation.PushAsync(new TeachersPage()); 
         }
 
         // Navegación inferior: Horario (ya estamos aquí)
