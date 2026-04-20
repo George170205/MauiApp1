@@ -1,9 +1,13 @@
-namespace MauiApp1.src.Presentation.Views;
+using MauiApp1.src.Presentation.ViewModels.Student;
 
-public partial class PerfilAlumnoPage : ContentPage
+namespace MauiApp1.src.Presentation.Views
 {
-	public PerfilAlumnoPage()
-	{
-		InitializeComponent();
-	}
+    public partial class PerfilAlumnoPage : ContentPage
+    {
+        public PerfilAlumnoPage()
+        {
+            InitializeComponent();
+            BindingContext = new PerfilAlumnoViewModel();
+        }
+    }
 }
