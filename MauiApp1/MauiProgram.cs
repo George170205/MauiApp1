@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using BarcodeScanner.Mobile;
+using Microsoft.Extensions.Logging;
 
 namespace MauiApp1
 {
@@ -9,6 +10,7 @@ namespace MauiApp1
             var builder = MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()
+                .ConfigureMauiHandlers(handlers => handlers.AddBarcodeScannerHandler())
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
