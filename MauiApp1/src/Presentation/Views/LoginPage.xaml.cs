@@ -64,20 +64,20 @@ namespace MauiApp1
                     return;
                 }
 
-                var token = response.Token;
+                Preferences.Set("jwt_token", response.Token);
+                Preferences.Set("rolID", response.Rol ?? "");
+                Preferences.Set("usuario", response.Email ?? "");
+                Preferences.Set("estudiante_id", response.EstudianteId.ToString());
 
-                // 🔐 Guardar token
-                Preferences.Set("jwt_token", token);
-
-                // 🔥 Decodificar JWT
-                var handler = new JwtSecurityTokenHandler();
-                var jwt = handler.ReadJwtToken(token);
-
-                var rolID = jwt.Claims.FirstOrDefault(c => c.Type == "RolID")?.Value;
-                var email = jwt.Claims.FirstOrDefault(c => c.Type.Contains("emailaddress"))?.Value;
-
-                Preferences.Set("rolID", rolID ?? "");
-                Preferences.Set("usuario", email ?? "");
+                // RolID puede venir en el body o en el claim del JWT
+                var rolID = response.Rol;
+                if (string.IsNullOrEmpty(rolID))
+                {
+                    var handler = new System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler();
+                    var jwt = handler.ReadJwtToken(response.Token);
+                    rolID = jwt.Claims.FirstOrDefault(c => c.Type == "RolID")?.Value ?? "";
+                    Preferences.Set("rolID", rolID);
+                }
 
                 await NavegarSegunRolID(rolID);
 

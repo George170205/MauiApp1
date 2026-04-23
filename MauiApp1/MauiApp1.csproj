@@ -35,7 +35,11 @@
 
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">15.0</SupportedOSPlatformVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">15.0</SupportedOSPlatformVersion>
-		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">23.0</SupportedOSPlatformVersion>
+		<!-- BarcodeScanner.Mobile.Maui trae MLKit que requiere min API 23 y
+		     genera clases duplicadas de savedstate en R8. Forzamos D8 en Debug
+		     para evitar el conflicto; Release usa R8 sin problema con -allowaccessmodification -->
+		<AndroidDexTool Condition="$(TargetFramework.Contains('-android')) and '$(Configuration)' == 'Debug'">d8</AndroidDexTool>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
 		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
@@ -67,6 +71,10 @@
 		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="9.0.8" />
 		<PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.16.0" />
+		<PackageReference Include="BarcodeScanner.Mobile.Maui" Version="9.0.1" />
+		<!-- Forza SavedState.Ktx a 1.4.0.2 donde ViewKt ya no duplica con
+		     savedstate-android (la clase fue consolidada en AndroidX 1.4.x) -->
+		<PackageReference Include="Xamarin.AndroidX.SavedState.SavedState.Ktx" Version="1.4.0.2" Condition="$(TargetFramework.Contains('-android'))" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -77,6 +85,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="src\Presentation\Views\Student\AsistenciaPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="src\Presentation\Views\Student\QrScannerPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="src\Presentation\Views\DistribucionGruposPage.xaml">

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:gv="clr-namespace:BarcodeScanner.Mobile;assembly=BarcodeScanner.Mobile.Maui"
+             x:Class="MauiApp1.src.Presentation.Views.QrScannerPage"
+             Title="Escanear QR"
+             BackgroundColor="Black"
+             NavigationPage.HasNavigationBar="False">
+
+    <Grid>
+
+        <!-- Cámara con detección -->
+        <gv:CameraView
+            x:Name="cameraView"
+            OnDetected="CameraView_OnDetected"
+            VibrationOnDetected="True"
+            ScanInterval="100"
+            TorchOn="False"
+            HorizontalOptions="Fill"
+            VerticalOptions="Fill" />
+
+        <!-- Marco guía de encuadre -->
+        <Border
+            WidthRequest="260"
+            HeightRequest="260"
+            BackgroundColor="Transparent"
+            Stroke="White"
+            StrokeThickness="3"
+            StrokeShape="RoundRectangle 16"
+            HorizontalOptions="Center"
+            VerticalOptions="Center" />
+
+        <!-- Instrucción -->
+        <Label
+            Text="Apunta la cámara al código QR"
+            TextColor="White"
+            FontSize="15"
+            HorizontalOptions="Center"
+            VerticalOptions="Center"
+            TranslationY="160" />
+
+        <!-- Header con botón cancelar -->
+        <Grid VerticalOptions="Start" Padding="16,48,16,16">
+            <Label
+                Text="Registrar asistencia"
+                TextColor="White"
+                FontSize="18"
+                FontAttributes="Bold"
+                HorizontalOptions="Center" />
+            <Button
+                Text="✕"
+                TextColor="White"
+                BackgroundColor="Transparent"
+                FontSize="20"
+                HorizontalOptions="End"
+                VerticalOptions="Center"
+                Clicked="OnCancelarClicked" />
+        </Grid>
+
+    </Grid>
+
+</ContentPage>
